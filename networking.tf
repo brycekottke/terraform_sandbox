@@ -27,7 +27,7 @@ resource "aws_eip" "natgw-eip" {
 resource "aws_nat_gateway" "nat-gateway-1" {
   depends_on  = ["aws_vpc.main_vpc"]
   allocation_id = "${aws_eip.natgw-eip.id}"
-  subnet_id = "${aws_subnet.private-1.id}"
+  subnet_id = "${aws_subnet.public-1.id}"
 }
 
 //Public Subnet Route Table
