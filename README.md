@@ -4,8 +4,8 @@ This will create a simple AWS environment that contains the following:
  - 1 Public Subnet, includes Internet Gateway
  - 1 Private Subnet, includes NAT Gateway
  - 1 Publicly accessible Ubuntu server
-    ~ Please note that there is a userdata script that bootstraps OpenVPN AS to the server. This requires some user configuration. 
-    ~ Please see the OpenVPN AS Documentation supplied by OpenVPN on how to configure - https://openvpn.net/index.php/access-server/docs/quick-start-guide.html
+    - Please note that there is a userdata script that bootstraps OpenVPN AS to the server. This requires some user configuration. 
+    - Please see the OpenVPN AS Documentation supplied by OpenVPN on how to configure - https://openvpn.net/index.php/access-server/docs/quick-start-guide.html
  - 1 internally accessible Ubuntu server
  - 1 privately accessible Windows server 
 
