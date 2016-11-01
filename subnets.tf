@@ -10,6 +10,7 @@ resource "aws_subnet" "public-1" {
     Owner    = "${var.global["owner"]}"
     Type   = "Public"
     AZ     = "${var.global["public_subnet-1_az"]}"
+    Managed-By = "Terraform"
   }
 }
 
@@ -25,6 +26,7 @@ resource "aws_subnet" "private-1" {
     Owner    = "${var.global["owner"]}"
     Type   = "Private"
     AZ     = "${var.global["private_subnet-1_az"]}"
+    Managed-By = "Terraform"
   }
 }
 

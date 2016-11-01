@@ -14,8 +14,8 @@ resource "aws_security_group" "owner_inbound" {
 
 //Inbound from the internet
 resource "aws_security_group" "internet_sg" {
-  name    = "http & https inbound"
-  description = "Allow inbound internet traffic"
+  name    = "http & https inbound - Terraform"
+  description = "Allow inbound internet traffic. Managed by Terraform"
   vpc_id    = "${aws_vpc.main_vpc.id}"
 
     ingress {
@@ -41,8 +41,8 @@ resource "aws_security_group" "internet_sg" {
 
 //OpenVPN Security Group
 resource "aws_security_group" "openvpn_sg" {
-  name        = "openvpn-sg"
-  description = "Inbound rules for OpenVPN"
+  name        = "openvpn-sg - Terraform"
+  description = "Inbound rules for OpenVPN. Managed by Terraform"
   vpc_id      = "${aws_vpc.main_vpc.id}"
 
   ingress {
@@ -62,8 +62,8 @@ resource "aws_security_group" "openvpn_sg" {
 
 //Allow Inbound From VPC
 resource "aws_security_group" "vpc_inbound" {
-  name  = "${var.global["vpc_name"]}_Inbound"
-  description = "Allows inbound traffic from VPC"
+  name  = "${var.global["vpc_name"]}_Inbound - Terraform"
+  description = "Allows inbound traffic from VPC. Managed by Terraform"
   vpc_id  = "${aws_vpc.main_vpc.id}"
 
   ingress {

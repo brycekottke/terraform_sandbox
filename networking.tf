@@ -3,6 +3,7 @@ resource "aws_vpc" "main_vpc" {
   cidr_block = "${var.global["vpc_cidr"]}"
   tags {
     Name = "${var.global["vpc_name"]}"
+    Managed-By = "Terraform"
       }
 }
 
@@ -13,6 +14,7 @@ resource "aws_internet_gateway" "internet-gateway-1" {
 
   tags {
     Name = "${var.global["internet-gateway-1"]}"
+    Managed-By = "Terraform"
   }
 }
 

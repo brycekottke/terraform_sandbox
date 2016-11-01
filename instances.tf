@@ -19,6 +19,7 @@ resource "aws_instance" "OpenVPN" {
       Owner   = "${var.global["owner"]}"
       Type  = "VPN"
       VPN = "Primary"
+      Managed-By = "Terraform"
     }
 }
 
@@ -40,6 +41,8 @@ resource "aws_instance" "ubuntu-1" {
       Name  = "${var.global["owner"]}-Ubuntu-1"
       Owner   = "${var.global["owner"]}"
       Type  = "Ubuntu"
+      Managed-By = "Terraform"
+
     }
 }
 
@@ -62,5 +65,6 @@ resource "aws_instance" "windows1" {
       Name  = "${var.global["owner"]}-Windows-1"
       Owner   = "${var.global["owner"]}"
       Type  = "Windows"
+      Managed-By = "Terraform"
     }
 }
