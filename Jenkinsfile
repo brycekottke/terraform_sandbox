@@ -23,11 +23,11 @@ properties([ parameters([
        description: 'AWS Secret Key' ),
 
   string( name: 'working_directory',
-       defaultValue : 'blah',
+       defaultValue : '.',
        description  : 'Path to this file' ),
 
   string( name: 'bucket_name',
-       defaultValue: 'bucket-name-here',
+       defaultValue: '2w-gbruno',
        description: 'Location of S3 bucket to place tfstate files' ),
 
   string( name: 'state_name',
@@ -35,11 +35,11 @@ properties([ parameters([
        description: 'tfstate name' ),
 
   string( name: 'variables_path',
-       defaultValue: '/path/to/file.tfvars',
+       defaultValue: 'variables.tf',
        description: 'Where is the tfvars/variables.tf file located?' ),
 
   string( name: 'environment_name',
-       defaultValue: 'env_here',
+       defaultValue: 'test',
        description: 'Environment Name' ),
 
 ]), pipelineTriggers([]) ])
