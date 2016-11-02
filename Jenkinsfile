@@ -11,14 +11,14 @@ properties([ parameters([
        description: 'Job mode: Create | Destroy' ),
 
   string( name: 'aws_region',
-       defaultValue: 'us-west-1',
+       defaultValue: 'us-east-1',
        description: 'AWS Deployment Region' ),
 
-  string( name: 'AWS_ACCESS_KEY_ID',
+  string( name: 'aws_access_key',
        defaultValue: 'ABC123UMEDOREIME',
        description: 'AWS Access Key' ),
 
-  string( name: 'AWS_SECRET_ACCESS_KEY',
+  string( name: 'aws_secret_key',
        defaultValue: 'SSHHSECRET',
        description: 'AWS Secret Key' ),
 
@@ -56,9 +56,9 @@ try {
   env.state_name = state_name
   env.environment_name = environment_name
   env.variables_path = variables_path
-  env.aws_region = AWS_DEFAULT_REGION
-  env.AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID
-  env.AWS_SECRET_ACCESS_KEY = AWS_SECRET_ACCESS_KEY
+  env.aws_region = aws_region
+  env.aws_access_key = aws_access_key
+  env.aws_secret_key = aws_secret_key
 
   switch (mode) {
 
