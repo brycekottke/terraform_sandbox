@@ -14,11 +14,11 @@ properties([ parameters([
        defaultValue: 'us-east-1',
        description: 'AWS Deployment Region' ),
 
-  string( name: 'aws_access_key',
+  string( name: 'AWS_ACCESS_KEY',
        defaultValue: 'ABC123UMEDOREIME',
        description: 'AWS Access Key' ),
 
-  string( name: 'aws_secret_key',
+  string( name: 'AWS_SECRET_ACCESS_KEY',
        defaultValue: 'SSHHSECRET',
        description: 'AWS Secret Key' ),
 
@@ -57,8 +57,8 @@ try {
   env.environment_name = environment_name
   env.variables_path = variables_path
   env.aws_region = aws_region
-  env.aws_access_key = aws_access_key
-  env.aws_secret_key = aws_secret_key
+  env.AWS_ACCESS_KEY = AWS_ACCESS_KEY
+  env.AWS_SECRET_ACCESS_KEY = AWS_SECRET_ACCESS_KEY
 
   switch (mode) {
 
