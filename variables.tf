@@ -12,7 +12,7 @@ variable "global" {
    public-1_cidr = "10.0.1.0/24"
    private-1_cidr = "10.0.2.0/24"
    owner = "your_name_here"
-   pem_key_name = "Greg2wTest.pem"
+   pem_key_name = "Greg2wTest"
    my_ip = "12.34.56.78/32"
    ubuntu_ami = "ami-e3c3b8f4"
    windows_ami = "ami-3f0c4628"
