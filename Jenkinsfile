@@ -63,7 +63,7 @@ try {
   switch (mode) {
 
     // Begin Pipeline Creation
-    case "create":
+    case "Create":
 
       node(jenkins_node) {
         stage ('Checkout') {
@@ -139,7 +139,7 @@ try {
     break // end - create
 
   // pipeline - destroy
-    case "destroy":
+    case "Destroy":
 
       node(jenkins_node) {
         stage ('TF Plan Destroy') {
