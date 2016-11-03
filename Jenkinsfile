@@ -14,7 +14,7 @@ properties([ parameters([
        defaultValue: 'us-east-1',
        description: 'AWS Deployment Region' ),
 
-  string( name: 'AWS_ACCESS_KEY',
+  string( name: 'AWS_ACCESS_KEY_ID',
        defaultValue: 'ABC123UMEDOREIME',
        description: 'AWS Access Key' ),
 
@@ -53,11 +53,10 @@ try {
   env.tf_cmd = "/var/jenkins_home/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/Terraform/terraform "
   env.working_directory = working_directory
   env.bucket_name = bucket_name
-  env.state_name = state_name
-  env.environment_name = environment_name
+
   env.variables_path = variables_path
   env.aws_region = aws_region
-  env.AWS_ACCESS_KEY = AWS_ACCESS_KEY
+  env.AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID
   env.AWS_SECRET_ACCESS_KEY = AWS_SECRET_ACCESS_KEY
 
   switch (mode) {
@@ -82,7 +81,7 @@ try {
                 set -e
                 if [[ "$resp" == *"404"* ]]; then
                   echo "Creating $bucket_name S3 bucket!"
-                  aws s3 mb s3://$bucket_name
+                  aws s3  mb s3://$bucket_name
                   aws s3api put-bucket-versioning --bucket $bucket_name \
                     --versioning-configuration Status=Enabled
                   key=$(echo $state_name | cut -d/ -f1)
