@@ -72,26 +72,25 @@ try {
         stage ('Remote State Check') {
           echo "Checking s3 bucket, ${bucket_name}..."
           dir(working_directory) {
-            sh '''
-              set +e
-              resp=$( aws s3api head-bucket --bucket $bucket_name 2>&1 )
-              if [ $? -eq 0 ]; then
-                echo "$bucket_name already exists!"
-              else
-                set -e
-                if [[ "$resp" == *"404"* ]]; then
-                  echo "Creating $bucket_name S3 bucket!"
-                  aws s3  mb s3://$bucket_name
-                  aws s3api put-bucket-versioning --bucket $bucket_name \
-                    --versioning-configuration Status=Enabled
-                  key=$(echo $state_name | cut -d/ -f1)
-                  aws s3api put-object --bucket $bucket_name --key $key/
-                fi
-                if [[ "$resp" == *"403"* ]]; then
-                  echo "Received 403 error, please verify your IAM keys have proper S3 access!"
-                fi
-              fi
-            '''
+            bash '''
+              resp=$(aws s3api head-bucket --bucket $bucket_name 2>&1)
+                  if [[ $? == "0" ]]; then
+                    echo "$bucket_name already exists!"
+                  elif
+                    [[ $resp == *"404"* ]] ; then
+                      echo "Creating $bucket_name S3 bucket!"
+                      aws s3 mb s3://$bucket_name
+                      aws s3api put-bucket-versioning --bucket $bucket_name \
+                      --versioning-configuration Status=Enabled
+                  elif
+                    [[ $resp == *"403"* ]] ; then
+                      echo "Access to $bucket_name is denied. Please verify your \
+                            IAM keys have proper access to $bucket_name"
+                  else
+                      echo "Unknown error. Is the AWS CLI installed?"
+                  fi
+
+                 '''
           }
         } // end Remote State Check
 
