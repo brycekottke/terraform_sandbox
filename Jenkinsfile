@@ -72,7 +72,7 @@ try {
         stage ('Remote State Check') {
           echo "Checking s3 bucket, ${bucket_name}..."
           dir(working_directory) {
-            bash '''
+            sh '''
               resp=$(aws s3api head-bucket --bucket $bucket_name 2>&1 | awk '{print $4}' | tr -d "(" | tr -d ")" )
               check=$(aws s3api head-bucket --bucket $bucket_name 2>&1)
                 if [ "$?" = 0 ]; then
