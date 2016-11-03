@@ -73,23 +73,26 @@ try {
           echo "Checking s3 bucket, ${bucket_name}..."
           dir(working_directory) {
             bash '''
-              resp=$(aws s3api head-bucket --bucket $bucket_name 2>&1)
-                  if [[ $? == "0" ]]; then
-                    echo "$bucket_name already exists!"
-                  elif
-                    [[ $resp == *"404"* ]] ; then
-                      echo "Creating $bucket_name S3 bucket!"
-                      aws s3 mb s3://$bucket_name
-                      aws s3api put-bucket-versioning --bucket $bucket_name \
-                      --versioning-configuration Status=Enabled
-                  elif
-                    [[ $resp == *"403"* ]] ; then
-                      echo "Access to $bucket_name is denied. Please verify your \
-                            IAM keys have proper access to $bucket_name"
-                  else
-                      echo "Unknown error. Is the AWS CLI installed?"
-                  fi
+              resp=$(aws s3api head-bucket --bucket $bucket_name 2>&1 | awk '{print $4}' | tr -d "(" | tr -d ")" )
+              check=$(aws s3api head-bucket --bucket $bucket_name 2>&1)
+                if [ "$?" = 0 ]; then
+                  echo "$bucket_name already exists!"
+                else
+                  if  [ $resp = 404 ] ; then
+                    echo "Creating $bucket_name S3 bucket!"
+                    aws s3 mb s3://$bucket_name
+                    aws s3api put-bucket-versioning --bucket $bucket_name \
+                    --versioning-configuration Status=Enabled
+                else
 
+                    if [  $resp = 403 ] ; then
+                      echo "Access to $bucket_name is denied. Please verify your IAM \
+                            keys have proper access to $bucket_name"
+                else
+                        echo "Response was $resp - Please see AWS Documentation on how to handle this error"
+                fi
+                    fi
+                        fi
                  '''
           }
         } // end Remote State Check
