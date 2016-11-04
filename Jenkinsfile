@@ -50,7 +50,7 @@ try {
   currentBuild.result = "SUCCESS"
 
   // Env Vars for jenkins_node
-  env.tf_cmd = "/var/jenkins_home/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/Terraform/terraform "
+  env.tf_cmd = "/opt/terraform/terraform "
   env.working_directory = working_directory
   env.bucket_name = bucket_name
 
